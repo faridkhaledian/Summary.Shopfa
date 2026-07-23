@@ -1,0 +1,85 @@
+@model Summary.Shopfa.Workflows.Task.Product.Update.UpdateProductInShopfaTaskViewModel
+
+@inject Microsoft.Extensions.Options.IOptions<Summary.Shopfa.Settings.ShopfaSettings> Options
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="form-group">
+      <label asp-for="ApiAddress">
+        آدرس وبسایت<span class="text-danger">*</span>
+      </label>
+      <input type="text" asp-for="ApiAddress" class="form-control" placeholder="@Options.Value.ApiAddress" />
+      <span class="hint">
+        از طریق این فیلد می‌توانید آدرس وبسایت خود را وارد نمایید. در صورتیکه این فیلد خالی باشد، آدرس وبسایت از تنظیمات
+        ماژول خوانده خواهد شد.
+      </span>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group">
+      <label asp-for="Username">
+        نام کاربری<span class="text-danger">*</span>
+      </label>
+      <input type="text" asp-for="Username" class="form-control" placeholder="@Options.Value.Username" />
+      <span class="hint">
+        از طریق این فیلد می‌توانید نام کاربری خود را وارد نمایید. در صورتیکه این فیلد خالی باشد، نام کاربری از تنظیمات
+        ماژول خوانده خواهد شد.
+      </span>
+    </div>
+    <div class="form-group">
+      <label asp-for="Password">
+        گذرواژه<span class="text-danger">*</span>
+      </label>
+      <input type="text" asp-for="Password" class="form-control" placeholder="@Options.Value.Password" />
+    </div>
+    <span class="hint">
+      از طریق این فیلد می‌توانید گذرواژه خود را وارد نمایید. در صورتیکه این فیلد خالی باشد، گذرواژه از تنظیمات ماژول
+      خوانده خواهد شد.
+    </span>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group">
+      <label asp-for="Price">
+        قیمت عادی<span class="text-danger">*</span>
+      </label>
+      <input type="text" asp-for="Price" class="form-control" />
+      <span class="hint">
+        از طریق این فیلد می‌توانید قیمت محصول در فروشگاه آنلاین را تعیین نمایید.
+      </span>
+    </div>
+    <div class="form-group">
+      <label asp-for="Quantity">
+        موجودی انبار<span class="text-danger">*</span>
+      </label>
+      <input type="text" asp-for="Quantity" class="form-control" />
+      <span class="hint">
+        از طریق این فیلد می‌توانید موجودی محصول در فروشگاه آنلاین را تعیین نمایید.
+      </span>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group">
+      <label asp-for="SearchBy">
+        جستجو بر اساس<span class="text-danger">*</span>
+      </label>
+      <select class="form-control" required asp-for="SearchBy">
+        <option></option>
+        <option value="SKU">شناسه محصول</option>
+        <option value="Extended">فیلد اختصاصی</option>
+      </select>
+      <span class="hint">
+        از طریق این فیلد می‌توانید مشخص نمایید که محصول مورد نظر بر اساس چه فیلدی در فروشگاه آنلاین جستجو شود.
+      </span>
+    </div>
+    <div class="form-group">
+      <label asp-for="SKU">عبارت جستجو</label>
+      <input type="text" asp-for="SKU" class="form-control" />
+        <span class="hint">
+            از طریق این فیلد می‌توانید عبارت جستجو برای یافتن محصول مورد نظر در فروشگاه آنلاین را وارد نمایید. در صورتیکه
+            فیلد "جستجو بر اساس" بر روی "شناسه محصول" تنظیم شده باشد، این فیلد باید حاوی شناسه محصول باشد و در صورتیکه
+            فیلد "جستجو بر اساس" بر روی "فیلد اختصاصی" تنظیم شده باشد، این فیلد باید حاوی مقدار فیلد اختصاصی با فرمت فوق باشد.
+            مثال: upc=156789012
+        </span>
+    </div>
+  </div>
+</div>

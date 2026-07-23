@@ -1,0 +1,13 @@
+@model ActivityViewModel<Summary.Shopfa.Workflows.Task.Product.Update.UpdateProductInShopfaTask>
+@using Core.Workflows.Helpers
+@using Core.Workflows.ViewModels
+@using Summary.Shopfa
+
+<header>
+    <h4>
+        @Model.Activity.GetTitleOrDefault(() => T[Shopfa.Localize.SubjectOfUpdateProduct])
+    </h4>
+    <em>
+        &quot;Shopfa - Update Product&quot;
+    </em>
+</header>

@@ -1,0 +1,25 @@
+@model Summary.Shopfa.Settings.ShopfaSettings
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label asp-for="ApiAddress">آدرس وب سرویس:</label>
+      <input class="form-control" type="text" asp-for="ApiAddress" placeholder="http(s)://Shopfa" />
+      <span class="hint">آدرس وب‌سایت را در این قسمت وارد کنید. مثال: https://crm-support.ir</span>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group">
+      <label asp-for="Username">نام کاربری</label>
+      <input class="form-control" type="text" asp-for="Username" />
+      <span class="hint">لطفاً نام کاربری‌ای را که با آن وارد وب‌سایت می‌شوید، وارد کنید.</span>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group">
+      <label asp-for="Password">گذرواژه</label>
+      <input class="form-control" type="text" asp-for="Password" />
+      <span class="hint">لطفاً گذرواژه‌ای را که با آن وارد وب‌سایت می‌شوید، وارد کنید.</span>
+    </div>
+  </div>
+</div>
