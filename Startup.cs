@@ -10,8 +10,10 @@ namespace Summary.Shopfa
     using Microsoft.Extensions.Options;
     using Services;
     using Summary.Shopfa.Settings;
-    using Summary.Shopfa.Workflows.Event.Order.WebhookHandler;
     using Summary.Shopfa.Workflows.Task.Product.Update;
+    using Summary.Shopfa.Workflows.Event.Order.Create;
+    using Summary.Shopfa.Workflows.Event.Order.Update;
+    using Summary.Shopfa.Workflows.Event.Order.ChangeStatus;
 
     [Feature(Shopfa.Features.Shopfa)]
     public class Startup : StartupBase
@@ -24,7 +26,10 @@ namespace Summary.Shopfa
             services.AddScoped<IPermissionProvider, Permissions>();
             services.AddScoped<IDisplayDriver<ISite>, ShopfaSettingsDisplayDriver>();
 
-            services.AddActivity<SubmitOrderEventInShopfa, OrderWebhookHandlerEventDisplay>();
+            services.AddActivity<ChangeStatusOrderEventInShopfaTask, ChangeStatusOrderEventInShopfaDisplay>();
+            services.AddActivity<CreateOrderEventInShopfaTask, CreateOrderEventInShopfaDisplay>();
+            services.AddActivity<UpdateOrderEventInShopfaTask, UpdateOrderEventInShopfaDisplay>();
+
             services.AddActivity<UpdateProductInShopfaTask, UpdateProductInShopfaTaskDisplay>();
 
             services.AddTransient<IConfigureOptions<ShopfaSettings>, ShopfaSettingsConfiguration>();

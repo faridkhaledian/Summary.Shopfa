@@ -98,6 +98,7 @@ namespace Summary.Shopfa
 
     public class OrderSubmitModel
     {
+        public string Event_Type { get; set; }
         public OrderSubmitData Data { get; set; }
     }
 
@@ -145,8 +146,6 @@ namespace Summary.Shopfa
         public int Item_Price { get; set; }
         public int Sum_Price { get; set; }
         public string Delivery_Time { get; set; }
-        public string State { get; set; }
-        public string City { get; set; }
         public IEnumerable<OrderItem> Items { get; set; }
     }
 
@@ -168,6 +167,7 @@ namespace Summary.Shopfa
     public class OrderSubmitData
     {
         public string Object_Type { get; set; }
+        public string Action { get; set; }
         public IEnumerable<string> Items { get; set; }
     }
 

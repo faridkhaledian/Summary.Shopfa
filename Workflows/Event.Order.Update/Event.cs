@@ -1,29 +1,28 @@
-namespace Summary.Shopfa.Workflows.Event.Order.WebhookHandler
-{
-    using Microsoft.Extensions.Localization;
-    using Core.Workflows.Abstractions.Models;
-    using Core.Workflows.Activities;
-    using Core.Workflows.Models;
-    using Summary.Shopfa.Services;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+using Core.Workflows.Abstractions.Models;
+using Core.Workflows.Activities;
+using Core.Workflows.Models;
+using Microsoft.Extensions.Localization;
+using System.Collections.Generic;
+using Summary.Shopfa.Services;
 
-    public class SubmitOrderEventInShopfa : EventActivity
+namespace Summary.Shopfa.Workflows.Event.Order.Update
+{
+    public class UpdateOrderEventInShopfaTask : EventActivity
     {
-        private readonly IStringLocalizer<SubmitOrderEventInShopfa> T;
+        private readonly IStringLocalizer<UpdateOrderEventInShopfaTask> T;
         private readonly IOrderService _order;
 
-        public SubmitOrderEventInShopfa(
-            IStringLocalizer<SubmitOrderEventInShopfa> t,
+        public UpdateOrderEventInShopfaTask(
+            IStringLocalizer<UpdateOrderEventInShopfaTask> t,
             IOrderService order)
         {
             _order = order;
             T = t;
         }
 
-        public override string Name => nameof(SubmitOrderEventInShopfa);
+        public override string Name => nameof(UpdateOrderEventInShopfaTask);
 
-        public override LocalizedString DisplayText => T[Shopfa.Localize.SOfCreateOrderEvent];
+        public override LocalizedString DisplayText => T[Shopfa.Localize.SOfUpdateOrder];
 
         public override LocalizedString Category => T[Shopfa.Public.Category];
 
@@ -45,9 +44,7 @@ namespace Summary.Shopfa.Workflows.Event.Order.WebhookHandler
             workflowContext.Input["Shopfa.Order.Id"] = order.Id;
             workflowContext.Input["Shopfa.Order.Session"] = order.Session;
             workflowContext.Input["Shopfa.Order.User.Id"] = order.User_Id;
-            workflowContext.Input["Shopfa.Order.State"] = order.State;
             workflowContext.Input["Shopfa.Order.State.Id"] = order.State_Id;
-            workflowContext.Input["Shopfa.Order.City"] = order.City;
             workflowContext.Input["Shopfa.Order.City.Id"] = order.City_Id;
             workflowContext.Input["Shopfa.Order.Date"] = order.Date;
             workflowContext.Input["Shopfa.Order.Update"] = order.Update;
@@ -94,3 +91,8 @@ namespace Summary.Shopfa.Workflows.Event.Order.WebhookHandler
         }
     }
 }
+
+
+
+
+

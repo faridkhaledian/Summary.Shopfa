@@ -1,0 +1,14 @@
+@model ActivityViewModel<Summary.Shopfa.Workflows.Event.Order.Create.CreateOrderEventInShopfaTask>
+
+@using Core.Workflows.Helpers
+@using Core.Workflows.ViewModels
+@using Summary.Shopfa
+
+<header>
+    <h4>
+        @Model.Activity.GetTitleOrDefault(() => T[Shopfa.Localize.SOfCreateOrder])
+    </h4>
+    <em>
+        &quot;Shopfa - Create Order&quot;
+    </em>
+</header>
