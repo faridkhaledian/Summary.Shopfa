@@ -40,8 +40,9 @@ namespace Summary.Shopfa.Workflows.Event.Order.Create
             var order_id = workflowContext.GetInputOrDefault("Shopfa.Order.Id");
 
             var order = await _order.GetDetailsByIdAsync(order_id);
-
+            
             workflowContext.Input["Shopfa.Order.Id"] = order.Id;
+            workflowContext.Input["Shopfa.Order.Status"] = order.Status;
             workflowContext.Input["Shopfa.Order.Session"] = order.Session;
             workflowContext.Input["Shopfa.Order.User.Id"] = order.User_Id;
             workflowContext.Input["Shopfa.Order.State.Id"] = order.State_Id;
@@ -64,7 +65,6 @@ namespace Summary.Shopfa.Workflows.Event.Order.Create
             workflowContext.Input["Shopfa.Order.Mobile"] = order.Mobile;
             workflowContext.Input["Shopfa.Order.Tel"] = order.Tel;
             workflowContext.Input["Shopfa.Order.Message"] = order.Message;
-            workflowContext.Input["Shopfa.Order.Status"] = order.Status;
             workflowContext.Input["Shopfa.Order.Status.Title"] = order.Status_Title;
             workflowContext.Input["Shopfa.Order.Weight"] = order.Weight;
             workflowContext.Input["Shopfa.Order.Service.Price"] = order.Service_Price;
