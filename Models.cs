@@ -96,10 +96,17 @@ namespace Summary.Shopfa
         public List<Basket> Baskets { get; set; }
     }
 
-    public class OrderSubmitModel
+    public class ShopfaSubmitModel
     {
         public string Event_Type { get; set; }
-        public OrderSubmitData Data { get; set; }
+        public ShopfaSubmitDataModel Data { get; set; }
+    }
+
+    public class ShopfaSubmitDataModel
+    {
+        public string Object_Type { get; set; }
+        public string Action { get; set; }
+        public IEnumerable<string> Items { get; set; }
     }
 
     public class ShopfaSigninResponse
@@ -162,13 +169,6 @@ namespace Summary.Shopfa
         public long Variant_Id { get; set; }
         public string Thumb { get; set; }
         public string Variant_Title { get; set; }
-    }
-
-    public class OrderSubmitData
-    {
-        public string Object_Type { get; set; }
-        public string Action { get; set; }
-        public IEnumerable<string> Items { get; set; }
     }
 
     public class ShopfaWebhookIncomingModel
@@ -239,4 +239,36 @@ namespace Summary.Shopfa
         public string Title { get; set; }
         public ulong Sum_Price { get; set; }
     }
+
+    public class ResponseProductInfo : BaseResponseInfo
+    {
+        public List<ProductDetailInfo> Items { get; set; }
+    }
+
+    public class ProductDetailInfo
+    {
+        public long Id { get; set; }
+        public string Title { get; set; }
+        public int Price { get; set; }
+        public int Old_Price { get; set; }
+        public int Quantity { get; set; }
+        public int Weight { get; set; }
+        public bool Variant { get; set; }
+        public List<ProductVariantInfo> Variants { get; set; }
+        public int Product_Status { get; set; }
+        public long Warehouse_Code { get; set; }
+        public string Unit { get; set; }
+    }
+
+    public class ProductVariantInfo
+    {
+        public long Id { get; set; }
+        public string Title { get; set; }
+        public int Price { get; set; }
+        public int Old_Price { get; set; }
+        public bool Status { get; set; }
+        public int Weight { get; set; }
+        public int Quantity { get; set; }
+    }
+
 }

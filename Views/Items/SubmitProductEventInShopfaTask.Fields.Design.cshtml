@@ -1,0 +1,14 @@
+@model ActivityViewModel<Summary.Shopfa.Workflows.Event.Product.Submit.SubmitProductEventInShopfaTask>
+
+@using Core.Workflows.Helpers
+@using Core.Workflows.ViewModels
+@using Summary.Shopfa
+
+<header>
+    <h4>
+        @Model.Activity.GetTitleOrDefault(() => T[Shopfa.Localize.SOfSubmitProduct])
+    </h4>
+    <em>
+        &quot;Shopfa - Submit Product&quot;
+    </em>
+</header>

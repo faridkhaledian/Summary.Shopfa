@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Summary.Shopfa.Workflows.Event.Order.Create;
 using Summary.Shopfa.Workflows.Event.Order.Update;
 using Summary.Shopfa.Workflows.Event.Order.ChangeStatus;
+using Summary.Shopfa.Workflows.Event.Product.Submit;
 
 namespace Summary.Shopfa.Controller.Api.V1
 {
@@ -15,12 +16,12 @@ namespace Summary.Shopfa.Controller.Api.V1
     [AllowAnonymous]
     [IgnoreAntiforgeryToken]
     [Authorize(AuthenticationSchemes = "Api")]
-    [Route("api/v1/shopfa/order")]
-    public class OrderController : ControllerBase
+    [Route("api/v1/shopfa/submit")]
+    public class SubmitController : ControllerBase
     {
         private readonly IWorkflowManager _workflowManager;
 
-        public OrderController(
+        public SubmitController(
             IWorkflowManager workflowManager)
         {
             _workflowManager = workflowManager;
@@ -35,7 +36,23 @@ namespace Summary.Shopfa.Controller.Api.V1
         }
 
         [HttpPost, Route("[action]")]
-        public async Task<IActionResult> Submit([FromBody] OrderSubmitModel model)
+        public async Task<IActionResult> Submit([FromBody] ShopfaSubmitModel model)
+        {
+            switch (model.Data.Object_Type.ToLower())
+            {
+                case "order":
+                    await OrderSubmit(model);
+                    break;
+
+                case "product":
+                    await ProductSubmit(model);
+                    break;
+            }
+
+            return Ok();
+        }
+
+        private async Task OrderSubmit(ShopfaSubmitModel model)
         {
             string eventName = "";
             switch (model.Event_Type.ToLower())
@@ -56,12 +73,20 @@ namespace Summary.Shopfa.Controller.Api.V1
                 { "Shopfa.Order.Id", model.Data.Items.First() }
             };
 
+            await _workflowManager.TriggerIntoDBAsync(eventName, inputs);
+        }
+
+        private async Task ProductSubmit(ShopfaSubmitModel model)
+        {
+            var inputs = new Dictionary<string, object>
+            {
+                { "Shopfa.Product.Ids", model.Data.Items }
+            };
+
             await _workflowManager.TriggerIntoDBAsync(
-                eventName,
+                nameof(SubmitProductEventInShopfaTask),
                 inputs
             );
-
-            return Ok();
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Summary.Shopfa
     using Summary.Shopfa.Workflows.Event.Order.Create;
     using Summary.Shopfa.Workflows.Event.Order.Update;
     using Summary.Shopfa.Workflows.Event.Order.ChangeStatus;
+    using Summary.Shopfa.Workflows.Event.Product.Submit;
 
     [Feature(Shopfa.Features.Shopfa)]
     public class Startup : StartupBase
@@ -29,6 +30,8 @@ namespace Summary.Shopfa
             services.AddActivity<ChangeStatusOrderEventInShopfaTask, ChangeStatusOrderEventInShopfaDisplay>();
             services.AddActivity<CreateOrderEventInShopfaTask, CreateOrderEventInShopfaDisplay>();
             services.AddActivity<UpdateOrderEventInShopfaTask, UpdateOrderEventInShopfaDisplay>();
+
+            services.AddActivity<SubmitProductEventInShopfaTask, SubmitProductEventInShopfaDisplay>();
 
             services.AddActivity<UpdateProductInShopfaTask, UpdateProductInShopfaTaskDisplay>();
 

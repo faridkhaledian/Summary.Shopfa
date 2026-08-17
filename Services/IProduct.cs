@@ -5,6 +5,7 @@ namespace Summary.Shopfa.Services
     using Core.Workflows;
     using Summary.Shopfa.Settings;
     using Summary.Shopfa.Workflows.Task.Product.Update;
+    using Summary.Shopfa;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -21,6 +22,7 @@ namespace Summary.Shopfa.Services
             int quantity,
             SearchBy search_by
         );
+        Task<ProductDetailInfo> GetDetailsByIdAsync(string id);
     }
 
     public class ProductService : BaseService, IProductService
@@ -197,6 +199,45 @@ namespace Summary.Shopfa.Services
                     );
                 }
             }
+        }
+
+        public async Task<ProductDetailInfo> GetDetailsByIdAsync(string id)
+        {
+            var api = _options.ApiAddress;
+            var username = _options.Username;
+            var password = _options.Password;
+
+            var token = await GenerateNewTokenAsync(api, username, password);
+
+            var url = $"{api}/api/shop/product/list";
+
+            var body = new
+            {
+                id = id,
+                fields = "id,title,price,old_price,quantity,weight,variants,variant,attributes,product_status,wid"
+            };
+
+            var response = await _client.SendPostRequestAsync<ResponseProductInfo>(
+                url,
+                body,
+                new KeyValuePair<string, string>("Private-Key", token),
+                "application/json"
+            );
+
+            var log = new
+            {
+                Body = body,
+                Token = token
+            };
+
+            if (response.Error_Code.HasValue) throw new WorkflowException(
+                response.Error,
+                null,
+                JsonConvert.SerializeObject(log),
+                "کارشناس پشتیبانی؛ تیکت را به سطح بعدی ارجاع دهید."
+            );
+
+            return response.Items.FirstOrDefault();
         }
     }
 }

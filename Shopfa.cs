@@ -33,6 +33,8 @@ namespace Summary.Shopfa
             public const string DOfUpdateOrder = "این رویداد زمانی فراخوانی میشود که سفارش در شاپفا به صف همگام سازی ارسال شود.";
             public const string SOfChangeStatusOrder = "رویداد تغییر وضعیت سفارش";
             public const string DOfChangeStatusOrder = "این رویداد زمانی فراخوانی میشود که سفارش در شاپفا به صف همگام سازی ارسال شود.";
+            public const string SOfSubmitProduct="رویداد بروزرسانی اطلاعات محصول";
+            public const string DOfSubmitProduct="این رویداد زمانی فراخوانی می شود که محصولی در شاپفا بروزرسانی شود.";
         }
     }
 }
