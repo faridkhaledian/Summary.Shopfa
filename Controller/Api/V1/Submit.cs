@@ -58,13 +58,13 @@ namespace Summary.Shopfa.Controller.Api.V1
             switch (model.Event_Type.ToLower())
             {
                 case "order:create":
-                    eventName = nameof(CreateOrderEventInShopfaTask);
+                    eventName = nameof(CreateOrderEventInShopfa);
                     break;
                 case "order:update":
-                    eventName = nameof(UpdateOrderEventInShopfaTask);
+                    eventName = nameof(UpdateOrderEventInShopfa);
                     break;
                 case "order:status_changed":
-                    eventName = nameof(ChangeStatusOrderEventInShopfaTask);
+                    eventName = nameof(ChangeStatusOrderEventInShopfa);
                     break;
             }
 
@@ -84,7 +84,7 @@ namespace Summary.Shopfa.Controller.Api.V1
             };
 
             await _workflowManager.TriggerIntoDBAsync(
-                nameof(SubmitProductEventInShopfaTask),
+                nameof(SubmitProductEventInShopfa),
                 inputs
             );
         }

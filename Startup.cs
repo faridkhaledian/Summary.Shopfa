@@ -27,11 +27,11 @@ namespace Summary.Shopfa
             services.AddScoped<IPermissionProvider, Permissions>();
             services.AddScoped<IDisplayDriver<ISite>, ShopfaSettingsDisplayDriver>();
 
-            services.AddActivity<ChangeStatusOrderEventInShopfaTask, ChangeStatusOrderEventInShopfaDisplay>();
-            services.AddActivity<CreateOrderEventInShopfaTask, CreateOrderEventInShopfaDisplay>();
-            services.AddActivity<UpdateOrderEventInShopfaTask, UpdateOrderEventInShopfaDisplay>();
+            services.AddActivity<ChangeStatusOrderEventInShopfa, ChangeStatusOrderEventInShopfaDisplay>();
+            services.AddActivity<CreateOrderEventInShopfa, CreateOrderEventInShopfaDisplay>();
+            services.AddActivity<UpdateOrderEventInShopfa, UpdateOrderEventInShopfaDisplay>();
 
-            services.AddActivity<SubmitProductEventInShopfaTask, SubmitProductEventInShopfaDisplay>();
+            services.AddActivity<SubmitProductEventInShopfa, SubmitProductEventInShopfaDisplay>();
 
             services.AddActivity<UpdateProductInShopfaTask, UpdateProductInShopfaTaskDisplay>();
 

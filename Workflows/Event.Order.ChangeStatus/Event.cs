@@ -7,20 +7,20 @@ using Summary.Shopfa.Services;
 
 namespace Summary.Shopfa.Workflows.Event.Order.ChangeStatus
 {
-    public class ChangeStatusOrderEventInShopfaTask : EventActivity
+    public class ChangeStatusOrderEventInShopfa : EventActivity
     {
-        private readonly IStringLocalizer<ChangeStatusOrderEventInShopfaTask> T;
+        private readonly IStringLocalizer<ChangeStatusOrderEventInShopfa> T;
         private readonly IOrderService _order;
 
-        public ChangeStatusOrderEventInShopfaTask(
-            IStringLocalizer<ChangeStatusOrderEventInShopfaTask> t,
+        public ChangeStatusOrderEventInShopfa(
+            IStringLocalizer<ChangeStatusOrderEventInShopfa> t,
             IOrderService order)
         {
             _order = order;
             T = t;
         }
 
-        public override string Name => nameof(ChangeStatusOrderEventInShopfaTask);
+        public override string Name => nameof(ChangeStatusOrderEventInShopfa);
 
         public override LocalizedString DisplayText => T[Shopfa.Localize.SOfChangeStatusOrder];
 

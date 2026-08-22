@@ -10,20 +10,20 @@ using Summary.Shopfa.Services;
 
 namespace Summary.Shopfa.Workflows.Event.Product.Submit
 {
-    public class SubmitProductEventInShopfaTask : EventActivity
+    public class SubmitProductEventInShopfa : EventActivity
     {
-        private readonly IStringLocalizer<SubmitProductEventInShopfaTask> T;
+        private readonly IStringLocalizer<SubmitProductEventInShopfa> T;
         private readonly IProductService _product;
 
-        public SubmitProductEventInShopfaTask(
-            IStringLocalizer<SubmitProductEventInShopfaTask> t,
+        public SubmitProductEventInShopfa(
+            IStringLocalizer<SubmitProductEventInShopfa> t,
             IProductService product)
         {
             _product = product;
             T = t;
         }
 
-        public override string Name => nameof(SubmitProductEventInShopfaTask);
+        public override string Name => nameof(SubmitProductEventInShopfa);
 
         public override LocalizedString DisplayText => T[Shopfa.Localize.SOfSubmitProduct];
 
